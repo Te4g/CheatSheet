@@ -12,3 +12,7 @@ $ git remote add origin https://github.com/USERNAME/REPOSITORY.git
 ```shell script
 $ git remote set-url origin https://github.com/USERNAME/REPOSITORY.git
 ```
+**Generate changelog since last tag**
+```shell script
+$ git log $(git describe --tags --abbrev=0)..HEAD --pretty=format:"%s"  
+```
