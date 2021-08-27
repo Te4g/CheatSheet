@@ -5,6 +5,7 @@
 - [![git logo](assets/logos/git.svg) **Git**](git.md)
 - [![shell logo](assets/logos/shell.svg) **Shell**](shell.md)
 - [![markdown logo](assets/logos/markdown.svg) **Markdown**](markdown.md)
+- [![markdown logo](assets/logos/markdown.svg) **Debian**](debian.md)
 ---
 - **Links**
 - Docs
