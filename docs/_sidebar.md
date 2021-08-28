@@ -5,8 +5,8 @@
 - [![git logo](assets/logos/git.svg) **Git**](git.md)
 - [![shell logo](assets/logos/shell.svg) **Shell**](shell.md)
 - [![markdown logo](assets/logos/markdown.svg) **Markdown**](markdown.md)
-- [![markdown logo](assets/logos/markdown.svg) **Debian**](debian.md)
-- [![markdown logo](assets/logos/markdown.svg) **SSH**](ssh.md)
+- [![debian logo](assets/logos/debian.svg) **Debian**](debian.md)
+- [![ssh logo](assets/logos/ssh.svg) **SSH**](ssh.md)
 ---
 - **Links**
 - Docs
