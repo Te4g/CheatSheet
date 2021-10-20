@@ -12,3 +12,8 @@ ffmpeg -y -i input.mp4 -i logo.png -filter_complex "overlay=${x in pixels}:${y i
 ```shell script
 ffmpeg -rtsp_transport tcp -i ${camera_input} -re -stream_loop -1 -i {logo_path} -filter_complex overlay,scale=1280:-2,drawtext="fontfile={font_path}:bordercolor=0x000000:borderrw=1:fontcolor=0xFFFFFF:textfile={text_file_path}:reload=1:x=5:y=10:fontsize=38,format=yuv420p" -c:v libx264 -preset veryfast -b:v 4000k -f flv "rtmp://live.twitch.tv/app/{twitch_key}"
 ```
+
+**Resize image**
+```shell script
+ffmpeg -i input.jpg -vf scale={size_in_px}:-2 output.png
+```
