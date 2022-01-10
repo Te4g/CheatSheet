@@ -19,3 +19,13 @@ ssh {distant_machine_user}@localhost -p {local_machine_port}
 ```shell script
 ssh -L {local_machine_port}:localhost:{distant_machine_port} {user}@{distant_machine_ip}
 ```
+
+**Copy files**
+- From local to distant
+```shell script
+scp {local_file_path} {user}@{distant_machine_ip}:{desired_distant_path_to_file}
+```
+- From distant to local
+```shell script
+scp {user}@{distant_machine_ip}:{distant_path_to_file} {desired_local_path}
+```
