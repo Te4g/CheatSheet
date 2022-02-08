@@ -6,6 +6,7 @@
 - [![shell logo](assets/logos/shell.svg) **Shell**](shell.md)
 - [![markdown logo](assets/logos/markdown.svg) **Markdown**](markdown.md)
 - [![debian logo](assets/logos/debian.svg) **Debian**](debian.md)
+- [![linux logo](assets/logos/linux.svg) **Linux**](linux.md)
 - [![ssh logo](assets/logos/ssh.svg) **SSH**](ssh.md)
 - [![ffmpeg logo](assets/logos/ffmpeg.svg) **Ffmpeg**](ffmpeg.md)
 
