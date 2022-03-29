@@ -22,3 +22,15 @@ ffmpeg -i input.jpg -vf scale={size_in_px}:-2 output.png
 ```shell script
  ffmpeg -i input.mp4 -vframes 1 output.png
 ```
+
+**Get 1 frame at a specific time**
+```shell script
+ffmpeg -i input.mp4 -ss 01:23:45 -vframes 1 output.png
+``` 
+```
+-i input file           the path to the input file  
+-ss 01:23:45            seek the position to the specified timestamp  
+-vframes 1              only handle one video frame  
+output.png              output filename, should have a well-known extension  
+The -ss parameter accepts a value in the form HH:MM:SS[.xxx] or as a number in seconds. 
+```
