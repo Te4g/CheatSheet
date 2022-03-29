@@ -17,3 +17,8 @@ ffmpeg -rtsp_transport tcp -i ${camera_input} -re -stream_loop -1 -i {logo_path}
 ```shell script
 ffmpeg -i input.jpg -vf scale={size_in_px}:-2 output.png
 ```
+
+**Get first frame**
+```shell script
+ ffmpeg -i input.mp4 -vframes 1 output.png
+```
