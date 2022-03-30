@@ -34,3 +34,8 @@ ffmpeg -i input.mp4 -ss 01:23:45 -vframes 1 output.png
 output.png              output filename, should have a well-known extension  
 The -ss parameter accepts a value in the form HH:MM:SS[.xxx] or as a number in seconds. 
 ```
+
+**Take a screenshot form a RTSP endpoint**
+```bash
+ffmpeg -rtsp_transport tcp -i "rtsp://ip:port" -vframes 1 screenshot.png 
+```
