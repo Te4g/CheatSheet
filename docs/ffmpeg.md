@@ -35,7 +35,23 @@ output.png              output filename, should have a well-known extension
 The -ss parameter accepts a value in the form HH:MM:SS[.xxx] or as a number in seconds. 
 ```
 
-**Take a screenshot form a RTSP endpoint**
+**Take a screenshot from a RTSP endpoint**
 ```bash
 ffmpeg -rtsp_transport tcp -i "rtsp://ip:port" -vframes 1 screenshot.png 
+```
+
+**List audio devices**
+```bash
+arecord -l
+arecord -L
+```
+
+**Get details of an audio device**
+```bash
+arecord --dump-hw-params -D ${DEVICE_NAME}
+```
+
+**Record 30 seconds from an audio device**
+```bash
+ffmpeg -f alsa -i ${DEVICE_NAME} -t 30 output.wav
 ```
