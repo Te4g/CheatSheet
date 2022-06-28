@@ -55,3 +55,8 @@ arecord --dump-hw-params -D ${DEVICE_NAME}
 ```bash
 ffmpeg -f alsa -i ${DEVICE_NAME} -t 30 output.wav
 ```
+
+**Record 30 seconds from an audio device by specifying codec**
+```bash
+ffmpeg -f alsa -c:a pcm_s32le -i ${DEVICE_NAME} -t 30 output.wav
+```
