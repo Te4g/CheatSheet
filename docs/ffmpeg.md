@@ -65,3 +65,8 @@ ffmpeg -f alsa -c:a pcm_s32le -i ${DEVICE_NAME} -t 30 output.wav
 ```bash
 ffmpeg -stream_loop -1 -i gif1.gif -stream_loop -1 -i gif2.gif -i videoInput.mp4 -filter_complex "[2:v][0:v]overlay=10:10[bg];[bg][1:v]overlay=10:250" -preset veryfast -t 60 output.mp4
 ```
+
+**Create video from still images where images repeat themselves (1/10 for 10 seconds per image)**
+```bash
+ffmpeg -y -framerate 1/10 -i logo%d.png -r 25 output.mp4
+```
