@@ -60,3 +60,8 @@ ffmpeg -f alsa -i ${DEVICE_NAME} -t 30 output.wav
 ```bash
 ffmpeg -f alsa -c:a pcm_s32le -i ${DEVICE_NAME} -t 30 output.wav
 ```
+
+**Add GIF to video which repeat themselves**
+```bash
+ffmpeg -stream_loop -1 -i gif1.gif -stream_loop -1 -i gif2.gif -i videoInput.mp4 -filter_complex "[2:v][0:v]overlay=10:10[bg];[bg][1:v]overlay=10:250" -preset veryfast -t 60 output.mp4
+```
