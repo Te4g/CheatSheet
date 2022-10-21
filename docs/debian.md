@@ -4,3 +4,13 @@ su -
 usermod -aG sudo USERNAME
 newgrp sudo
 ```
+
+**Add a new user**
+```shell script
+sudo adduser ${username}
+```
+
+**Assign the sudo privileges to new user**
+```shell script
+sudo usermod -aG sudo ${username}
+```
