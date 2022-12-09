@@ -1,12 +1,26 @@
-test
+## PHP cs-fixer installation
 
-```php
-public function add(int $num1, int $num2): int 
-{
-    return $num1 + $num2;
-}
+```bash
+mkdir -p tools/php-cs-fixer
+composer require --working-dir=tools/php-cs-fixer friendsofphp/php-cs-fixer
 
-$total = add(1, 2);
+cat <<EOF> .php-cs-fixer.php
+<?php
 
-echo($total); // 3
+\$finder = PhpCsFixer\Finder::create()
+    ->in(__DIR__.'/src')
+;
+
+\$config = new PhpCsFixer\Config();
+return \$config->setRules([
+        '@Symfony' => true,
+    ])
+    ->setFinder(\$finder)
+;
+EOF
+
+cat <<EOF>> .gitignore
+/tools/php-cs-fixer/vendor/
+/.php-cs-fixer.cache
+EOF
 ```
