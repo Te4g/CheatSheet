@@ -19,4 +19,9 @@ ansible-galaxy init {role_name} --init-path {path}
 ansible-galaxy search web --author Te4g
 ```
 
+**Install a role**
+```bash
+ansible-galaxy install {role}
+```
+
 
