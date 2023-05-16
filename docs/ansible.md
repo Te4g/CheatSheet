@@ -11,7 +11,7 @@ ansible all -a "whereis python"
 **Create a role**
 ```bash
 # flag --init-path is optional, default is current path
-ansible-galaxy init {role_name} --init-path {path}"
+ansible-galaxy init {role_name} --init-path {path}
 ```
 
 
