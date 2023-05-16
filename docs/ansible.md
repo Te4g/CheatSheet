@@ -14,4 +14,9 @@ ansible all -a "whereis python"
 ansible-galaxy init {role_name} --init-path {path}
 ```
 
+**Find ansible roles by author**
+```bash
+ansible-galaxy search web --author Te4g
+```
+
 
