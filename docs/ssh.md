@@ -31,3 +31,8 @@ scp {local_file_path} {user}@{distant_machine_ip}:{desired_distant_path_to_file}
 ```shell script
 scp {user}@{distant_machine_ip}:{distant_path_to_file} {desired_local_path}
 ```
+
+**Remove ssh known_hosts entry**
+```
+ssh-keygen -R {hostname}
+```
