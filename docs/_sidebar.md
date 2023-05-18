@@ -11,6 +11,7 @@
 - [![ffmpeg logo](assets/logos/ffmpeg.svg) **Ffmpeg**](ffmpeg.md)
 - [![docker logo](assets/logos/docker.svg) **Docker**](docker.md)
 - [![ansible logo](assets/logos/ansible.svg) **Ansible**](ansible.md)
+- [![openstack logo](assets/logos/openstack.svg) **Openstack**](openstack.md)
 
 ---
 - **Links**
