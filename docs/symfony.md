@@ -2,7 +2,7 @@
 
 ```bash
 mkdir -p tools/php-cs-fixer
-composer require --working-dir=tools/php-cs-fixer friendsofphp/php-cs-fixer
+composer require --dev --working-dir=tools/php-cs-fixer friendsofphp/php-cs-fixer
 
 cat <<EOF> .php-cs-fixer.php
 <?php
