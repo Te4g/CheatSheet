@@ -24,4 +24,12 @@ ansible-galaxy search web --author Te4g
 ansible-galaxy install {role}
 ```
 
+**Use ansible with a passphrase protected ssh key**
+```bash
+ansible all -i inventory.yml -m ping --ask-pass
+```
 
+**Speficy host directly on command line (the "," is not a typo)**
+```bash
+ansible-playbook -i localhost:2222, playbooks/secure-vps.yml -u ubuntu --ask-become 
+```
