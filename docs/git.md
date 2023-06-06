@@ -16,3 +16,7 @@ $ git remote set-url origin https://github.com/USERNAME/REPOSITORY.git
 ```shell script
 $ git log $(git describe --tags --abbrev=0)..HEAD --pretty=format:"%s"  
 ```
+**Get last tag (semver speaking)**
+```shell script
+$ git tag -l --sort=-version:refname | head -1  
+```
