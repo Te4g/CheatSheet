@@ -20,3 +20,7 @@ $ git log $(git describe --tags --abbrev=0)..HEAD --pretty=format:"%s"
 ```shell script
 $ git tag -l --sort=-version:refname | head -1  
 ```
+**Rebase the first 2 commits**
+```bash
+git rebase -i --root
+```
