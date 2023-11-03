@@ -24,3 +24,7 @@ $ git tag -l --sort=-version:refname | head -1
 ```bash
 git rebase -i --root
 ```
+**Reset the last commit and keep changes**
+```bash
+git reset HEAD~1
+```
