@@ -8,3 +8,8 @@ docker buildx build --platform linux/amd64,linux/arm64,linux/armv7 -t myregistry
 ```
 docker buildx push --platform linux/amd64,linux/arm64,linux/armv7 myregistry/myimage:latest
 ```
+
+### Run composer from docker
+```
+docker run --rm -v $(pwd):/app composer
+```
