@@ -28,3 +28,12 @@ git rebase -i --root
 ```bash
 git reset HEAD~1
 ```
+**Apply a change to a previous commit which is not last commit**
+```bash
+git rebase -i HEAD~{number of commits to go back}
+ => set "pick" to "edit" at the commit you want to change
+ => apply the changes to your files
+git add .
+git commit --amend --no-edit
+git rebase --continue
+```
