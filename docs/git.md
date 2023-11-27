@@ -37,3 +37,7 @@ git add .
 git commit --amend --no-edit
 git rebase --continue
 ```
+**Force to reset a branch as a remote one (here origin/master)**
+```bash
+git reset --hard origin/master
+```
