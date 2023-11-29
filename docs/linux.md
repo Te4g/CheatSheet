@@ -36,16 +36,12 @@ mkfs.ext4 /dev/md0
 ```shell
 mount /dev/md0 /mnt
 ```
-- Make sure to keep the RAID configuration (reboot proof)
+- To ensure that the RAID configuration is saved and can be reassembled at boot, save the configuration:
 ```shell
- vim /etc/mdadm.conf
-ARRAY /dev/md0 UUID=2312awewae:123123awda:123123ssaada:1231dadawdaw
+mdadm --detail --scan | sudo tee -a /etc/mdadm/mdadm.conf
 ```
-- The previous UUID can be found using this command:
-```shell
-mdadm --detail /dev/md0
-```
-- Regenerate initramfs
+- /!\ Verifiy the /etc/mdadm/mdadm.conf file that the config does not contains duplicate /!\
+- Update the initial RAM filesystem so that the RAID array is recognized at boot:
 ```shell
 update-initramfs -u
 ```
