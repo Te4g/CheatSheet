@@ -40,7 +40,7 @@ mount /dev/md0 /mnt
 ```shell
 mdadm --detail --scan | sudo tee -a /etc/mdadm/mdadm.conf
 ```
-- /!\ Verifiy the /etc/mdadm/mdadm.conf file that the config does not contains duplicate /!\
+!> /!\ Verifiy the /etc/mdadm/mdadm.conf file that the config does not contains duplicate /!\
 - Update the initial RAM filesystem so that the RAID array is recognized at boot:
 ```shell
 update-initramfs -u
