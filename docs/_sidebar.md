@@ -13,6 +13,7 @@
 - [![ansible logo](assets/logos/ansible.svg) **Ansible**](ansible.md)
 - [![openstack logo](assets/logos/openstack.svg) **Openstack**](openstack.md)
 - [![wireguard logo](assets/logos/wireguard.svg) **Wireguard**](wireguard.md)
+- [![minio logo](assets/logos/minio.svg) **Minio**](minio.md)
 
 ---
 - **Links**
