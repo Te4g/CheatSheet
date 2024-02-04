@@ -36,3 +36,15 @@ scp {user}@{distant_machine_ip}:{distant_path_to_file} {desired_local_path}
 ```
 ssh-keygen -R {hostname}
 ```
+
+**Setup a ssh socks proxy and use it with chromium**
+1. Setup the connection
+```bash
+ssh {user}@{ip} -D {local_port}
+```
+2. Start chromium with the proper flag
+```bash
+chromium --proxy-server="socks5://localhost:{local_port}"
+```
+
+
