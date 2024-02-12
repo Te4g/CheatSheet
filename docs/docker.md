@@ -13,3 +13,8 @@ docker buildx push --platform linux/amd64,linux/arm64,linux/armv7 myregistry/myi
 ```
 docker run --rm -v $(pwd):/app composer
 ```
+
+### Quick start a ubuntu container
+```bash
+docker run --rm -it ubuntu /bin/bash
+```
