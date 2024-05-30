@@ -47,4 +47,12 @@ ssh {user}@{ip} -D {local_port}
 chromium --proxy-server="socks5://localhost:{local_port}"
 ```
 
+**Forward SSH agent to remote machine**
+1. Add RSA or DSA identities to the authentication agent
+`ssh-add {path_to_identify:optional}`
+2. Connect to the remote server
+`ssh -A {user}@{host}`
+3. Check if it works by calling github (ur key must be known by GitHub ofc)
+`ssh -T git@github.com`
+
 
