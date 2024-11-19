@@ -6,3 +6,7 @@
 4. Run wg-quick command `wg-quick up wg0`
 5. If `resolvconf` not found run: `sudo ln -s /usr/bin/resolvectl /usr/local/bin/resolvconf`
 6. See the result `sudo wg show`
+
+
+## Get status
+`sudo systemctl status wg-quick@wg0.service`
