@@ -14,6 +14,8 @@
 - [![openstack logo](assets/logos/openstack.svg) **Openstack**](openstack.md)
 - [![wireguard logo](assets/logos/wireguard.svg) **Wireguard**](wireguard.md)
 - [![minio logo](assets/logos/minio.svg) **Minio**](minio.md)
+- [![s3_logo](assets/logos/s3.svg) **AWS S3**](s3.md)
+
 
 ---
 - **Links**
