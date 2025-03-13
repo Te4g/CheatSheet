@@ -70,3 +70,11 @@ ffmpeg -stream_loop -1 -i gif1.gif -stream_loop -1 -i gif2.gif -i videoInput.mp4
 ```bash
 ffmpeg -y -framerate 1/10 -i logo%d.png -r 25 output.mp4
 ```
+
+**Generate a fake video stream**
+```bash
+ffmpeg -re \
+-f lavfi \
+-i "testsrc=size=1280x720:rate=30,drawtext=text='Stream-#$(openssl rand -hex 6)':fontsize=50:fontcolor=black:x=(w-text_w)/2:y=(h-text_h*2)" \
+-f mpegts udp://localhost:1234
+```
