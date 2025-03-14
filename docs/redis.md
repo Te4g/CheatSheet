@@ -64,4 +64,17 @@ SET my_key my_value
 GET my_key
 ```
 
+### GET all values by pattern in PHP and have the result as an associative array (value is a JSON string)
+```php
+$redisKeys = $redis->keys('sport_centers:*');
+$redis->multi(\Redis::PIPELINE);
+foreach ($redisKeys as $key) {
+    $redis->get($key);
+}
+$values = $redis->exec();
+
+$sportCenters = array_combine($redisKeys, array_map(static fn(string $value) => json_decode($value, true, 512, JSON_THROW_ON_ERROR), $values));
+
+```
+
 
