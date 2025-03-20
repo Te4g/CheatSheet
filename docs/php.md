@@ -24,3 +24,8 @@ dump($matches); // [
 // 'data' => 'Hello world!'
 //]
 ```
+
+### Generate a backtrace
+```php
+debug_backtrace(2);
+```
