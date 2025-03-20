@@ -1,7 +1,11 @@
 # PHP
 ### Set PHP memory limit
-```php
+```bash
 echo 'memory_limit = 256M' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini;
+```
+**Reset FrankenPHP (supervisord will relaunch the service)**
+```bash
+pkill -9 -f /usr/local/bin/frankenphp
 ```
 
 ### Monolog line formatter parser
