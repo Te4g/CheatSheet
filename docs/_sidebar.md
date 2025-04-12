@@ -17,6 +17,7 @@
 - [![minio logo](assets/logos/minio.svg) **Minio**](minio.md)
 - [![s3_logo](assets/logos/s3.svg) **Aws S3**](s3.md)
 - [![redis_logo](assets/logos/redis.svg) **Redis**](redis.md)
+- [![macos_logo](assets/logos/macos.svg) **MacOs**](macos.md)
 
 
 ---
