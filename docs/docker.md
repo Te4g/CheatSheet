@@ -36,3 +36,7 @@ sudo ufw route allow proto tcp from any to 172.46.0.1 port 80
 ```bash
 curl http://{public_ip}:8080 ## Should return the nginx welcome page
 ```
+### Remove dangling volumes
+```bash
+docker volume rm `docker volume ls -q -f dangling=true`
+```
