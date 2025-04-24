@@ -14,7 +14,8 @@ git remote set-url origin https://github.com/USERNAME/REPOSITORY.git
 ```
 **Generate changelog since last tag**
 ```shell script
-git log $(git describe --tags --abbrev=0)..HEAD --pretty=format:"%s"  
+git log $(git describe --tags --abbrev=0)..HEAD --pretty=format:"%s"
+git log $(git describe --tags --abbrev=0)..HEAD --pretty=format:"* %s by @%an in https://github.com/my-org/my-repo/commit/%H"
 ```
 **Get last tag (semver speaking)**
 ```shell script
