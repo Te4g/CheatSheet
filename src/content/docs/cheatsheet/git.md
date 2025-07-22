@@ -46,3 +46,30 @@ git rebase --continue
 ```bash
 git reset --hard origin/master
 ```
+## Sync from a template
+- Add the original template repository as a remote
+```bash
+git remote add template git@github.com:Te4g/symfony-template.git
+```
+
+- Fetch the latest changes from the template
+```bash
+git fetch template
+```
+
+- Create a new branch for the merge
+```bash
+git checkout -b sync-template
+```
+
+- Merge the template changes (this may require resolving conflicts)
+```bash
+git merge template/main
+```
+
+- Review changes and resolve any conflicts
+- Then merge back to your main branch
+```bash
+git checkout main
+git merge sync-template
+```
