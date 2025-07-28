@@ -5,7 +5,7 @@ title: PHP
 ```bash
 echo 'memory_limit = 256M' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini;
 ```
-## Reset FrankenPHP (supervisord will relaunch the service)
+### Reset FrankenPHP (supervisord will relaunch the service)
 ```bash
 pkill -9 -f /usr/local/bin/frankenphp
 ```
@@ -25,6 +25,44 @@ dump($matches); // [
 // 'class' => 'App\Hello',
 // 'data' => 'Hello world!'
 //]
+```
+
+### Nginx logs parser
+```php
+$pattern = <<<'REGEX'
+~^
+(?<ip>\S+)
+\s+-\s+\S+\s+
+\[(?<time>[^\]]+)]
+\s+
+"(?<method>[A-Z]+)\s+(?<uri>\S+)\s+(?<protocol>HTTP/\d\.\d)"
+\s+
+(?<status>\d{3})
+\s+
+(?<bytes>\d+)
+\s+
+"(?<referer>[^"]*)"
+\s+
+"(?<agent>[^"]*)"
+(\s+"(?<req_time>[\d.]+)")?
+~x
+REGEX;
+
+$matches = [];
+preg_match($pattern, $log, $matches);
+dump($matches); 
+[
+  "ip" => "192.168.0.10"
+  "time" => "27/Jul/2025:15:26:07 +0000"
+  "method" => "GET"
+  "uri" => "/example/1"
+  "protocol" => "HTTP/1.1"
+  "status" => "200"
+  "bytes" => "735"
+  "referer" => "-"
+  "agent" => "Mozilla/5.0"
+  "req_time" => "10.23"
+]
 ```
 
 ### Generate a backtrace
