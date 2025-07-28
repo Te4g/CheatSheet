@@ -82,3 +82,8 @@ ffmpeg -re \
 -i "testsrc=size=1280x720:rate=30,drawtext=text='Stream-#$(openssl rand -hex 6)':fontsize=50:fontcolor=black:x=(w-text_w)/2:y=(h-text_h*2)" \
 -f mpegts udp://localhost:1234
 ```
+
+## Play video from a remote server (Ffmeg must be built with libssh)
+```bash
+ffplay -private_key ~/.ssh/my_key sftp://user@ip/path_to_file
+```
