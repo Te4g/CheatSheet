@@ -19,16 +19,14 @@ RUN docker-php-ext-enable redis
 3. Usage example
 - Hello world
     ```php
-    $redis = new \Redis([
-        'host' => 'tls://my-domain.com',
-        'port' => 1234,
-        'auth' => ['default', 'password']
-    ]);
+    $redis = new \Redis();
+    $redis->connect('tls://my-domain.com', 7938, 2.5, null, 0, 0);
+    $redis->auth(['user', 'password']);
     
     $redis->set('test', 'Hello world!');
-    $data = $redis->get('test')
+    $data = $redis->get('test');
     
-    echo $data // Hello world!;
+    echo $data; // Hello world!;
     ```
 - Create a new user with a password and limit access to GET command and keys matching a pattern
     ```php
