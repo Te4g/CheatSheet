@@ -59,4 +59,16 @@ chromium --proxy-server="socks5://localhost:{local_port}"
 3. Check if it works by calling github (ur key must be known by GitHub ofc)
 `ssh -T git@github.com`
 
-
+## Allow / Deny SSH password authentication
+1. Edit / add ssh custom config
+```bash
+sudo vim /etc/ssh/sshd_config.d/password_authentication.conf
+```
+2. Add the following line
+```bash
+PasswordAuthentication no
+```
+3. Restart sshd
+```bash
+sudo systemctl restart sshd
+```
