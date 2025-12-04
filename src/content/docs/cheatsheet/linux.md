@@ -49,3 +49,7 @@ mdadm --detail --scan | sudo tee -a /etc/mdadm/mdadm.conf
 ```shell
 update-initramfs -u
 ```
+## List all processes with elapsed time
+```bash
+ps -o pid,etime,time,comm,args
+```
