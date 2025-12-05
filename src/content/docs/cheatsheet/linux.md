@@ -53,3 +53,10 @@ update-initramfs -u
 ```bash
 ps -o pid,etime,time,comm,args
 ```
+## List all processes listening on a port
+```bash
+lsof -i :{PORT}
+```
+```bash
+ss -tulnp | grep {PORT}
+```
