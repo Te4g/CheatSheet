@@ -19,5 +19,13 @@ curl https://raw.githubusercontent.com/caddyserver/dist/refs/heads/master/config
 docker run --rm -p 8100:80 \
     -v $PWD/conf:/etc/caddy \
     -v caddy_data:/data \
+    --add-host=host.docker.internal:host-gateway
     caddy
+```
+
+- Caddyfile example when running in docker on Linux (use host.docker.internal)
+```bash
+:80 {
+    reverse_proxy host.docker.internal:8000
+}
 ```
