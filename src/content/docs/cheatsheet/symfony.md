@@ -28,3 +28,9 @@ cat <<EOF>> .gitignore
 /.php-cs-fixer.cache
 EOF
 ```
+
+## Maker bundle
+- make:controller to a custom directory
+```bash
+bin/console make:controller "\\MyDirectory\\MySubDir\\MyController"
+```
