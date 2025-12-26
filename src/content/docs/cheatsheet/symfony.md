@@ -30,7 +30,7 @@ EOF
 ```
 
 ## Maker bundle
-- make:controller to a custom directory
+### make:controller to a custom directory
 ```bash
 bin/console make:controller "\\MyDirectory\\MySubDir\\MyController"
 ```
