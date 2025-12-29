@@ -34,3 +34,10 @@ EOF
 ```bash
 bin/console make:controller "\\MyDirectory\\MySubDir\\MyController"
 ```
+
+## Process
+### Run a command in a background process
+```php
+$process = Process::fromShellCommandline('nohup php bin/console app:my-command > var/log/command.log 2>&1 &');        
+$process->run();
+```
