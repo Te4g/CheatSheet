@@ -60,3 +60,36 @@ lsof -i :{PORT}
 ```bash
 ss -tulnp | grep {PORT}
 ```
+
+## Nginx Access Log: Count Requests per Endpoint 
+```bash
+grep 'what_i_am_looking_for' access.log \
+| awk '{print $7}' \
+| cut -d'?' -f1 \
+| sort \
+| uniq -c \
+| sort -nr
+```
+
+## Nginx Access Log: Count Requests per Endpoint with method
+```bash
+grep 'what_i_am_looking_for' access.log \
+| awk '{print $6, $7}' \
+| sed 's/"//g' \
+| cut -d'?' -f1 \
+| sort \
+| uniq -c \
+| sort -nr
+```
+
+## Nginx Access Log: Count Requests per Endpoint with method, trim last segment of URL
+```bash
+grep 'what_i_am_looking_for' access.log \
+| awk '{print $6, $7}' \
+| sed 's/"//g' \
+| cut -d'?' -f1 \
+| sed 's#/[^/]*$##' \
+| sort \
+| uniq -c \
+| sort -nr
+```
