@@ -57,3 +57,13 @@ title: Shell (Bash)
 ## File Permissions (chmod)
 - **chmod +x file**: Make `file` executable.
 - **chmod 755 file**: Set read, write, and execute permission for owner, and read and execute permission for group and others.
+
+## Read a file line by line
+```bash
+#!/bin/bash
+input="/path/to/txt/file"
+while IFS= read -r line
+do
+  echo "$line"
+done < "$input"
+```
