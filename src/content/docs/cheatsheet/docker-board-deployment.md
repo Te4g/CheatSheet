@@ -164,19 +164,85 @@ If necessary, add it to the Docker group and start a new login session:
 sudo usermod -aG docker deploy
 ```
 
+Create the default SSH alias used by the repository configuration helper in
+`~/.ssh/config`:
+
+```text
+Host rourou-germany
+    HostName vps.example.com
+    Port 22
+    User deploy
+    IdentityFile ~/.ssh/deploy@rourou-germany
+```
+
 Create a dedicated, non-interactive deployment key on the administrator
 machine and authorize its public key for the `deploy` account:
 
 ```bash
-ssh-keygen -t ed25519 -N '' -f ~/.ssh/my-app-deploy -C my-app-deploy
-ssh-copy-id -i ~/.ssh/my-app-deploy.pub deploy@vps.example.com
+ssh-keygen -t ed25519 -N '' \
+    -f ~/.ssh/deploy@rourou-germany \
+    -C deploy@rourou-germany
+ssh-copy-id -i ~/.ssh/deploy@rourou-germany.pub rourou-germany
 ```
 
-## Configure DNS and GitHub secrets
+Before accepting the host key, compare the displayed fingerprint with the VPS
+provider console.
+
+## Configure DNS
 
 Create an `A` record for `my-app.example.com` pointing to the VPS. Add an
 `AAAA` record only when IPv6 routing and the VPS firewall are configured. With
 Cloudflare proxying enabled, use `Full (strict)` SSL/TLS mode.
+
+## Configure GitHub secrets with the helper
+
+The preferred method is `~/.config/rourou.dev/set-repo-secrets.sh`. It resolves
+the host and port from the `rourou-germany` SSH alias, validates the unencrypted
+private key, obtains the pinned host keys, and configures these repository
+Actions secrets:
+
+- `DEPLOY_HOST`;
+- `DEPLOY_PORT`;
+- `DEPLOY_USER` as `deploy`;
+- `DEPLOY_KEY`;
+- `DEPLOY_KNOWN_HOSTS`.
+
+Authenticate the GitHub CLI, then run the helper from the target repository:
+
+```bash
+gh auth status --hostname github.com
+cd ~/Dev/my-app
+~/.config/rourou.dev/set-repo-secrets.sh
+```
+
+It can also configure a repository explicitly from any directory:
+
+```bash
+~/.config/rourou.dev/set-repo-secrets.sh Te4g/my-app
+```
+
+Override the SSH alias or key path when deploying somewhere else:
+
+```bash
+SSH_TARGET=my-vps \
+DEPLOY_KEY_PATH=~/.ssh/deploy@my-vps \
+~/.config/rourou.dev/set-repo-secrets.sh Te4g/my-app
+```
+
+The helper displays the resolved non-secret values, redacts the private key,
+and shows its fingerprint before changing GitHub. Verify the result without
+printing secret values:
+
+```bash
+gh secret list --repo Te4g/my-app
+```
+
+The helper always configures `DEPLOY_USER=deploy`. Use the manual fallback when
+the VPS uses another deployment account. Before its first run against a host,
+connect once and verify the SSH fingerprint so the trusted key already exists
+in the local `known_hosts` file.
+
+### Manual fallback
 
 Record the VPS host key from a trusted machine, then compare its fingerprint
 with the value shown by the VPS provider before using it:
@@ -193,15 +259,16 @@ Add these repository Actions secrets:
 | `DEPLOY_HOST` | VPS hostname or IP address |
 | `DEPLOY_PORT` | SSH port; optional when it is `22` |
 | `DEPLOY_USER` | `deploy` |
-| `DEPLOY_KEY` | Contents of `~/.ssh/my-app-deploy` |
+| `DEPLOY_KEY` | Contents of `~/.ssh/deploy@rourou-germany` |
 | `DEPLOY_KNOWN_HOSTS` | Verified contents of `my-app-known-hosts` |
 
 Using the GitHub CLI:
 
 ```bash
 gh secret set DEPLOY_HOST --body vps.example.com
+gh secret set DEPLOY_PORT --body 22
 gh secret set DEPLOY_USER --body deploy
-gh secret set DEPLOY_KEY < ~/.ssh/my-app-deploy
+gh secret set DEPLOY_KEY < ~/.ssh/deploy@rourou-germany
 gh secret set DEPLOY_KNOWN_HOSTS < my-app-known-hosts
 ```
 
