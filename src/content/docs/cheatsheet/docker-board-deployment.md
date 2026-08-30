@@ -137,6 +137,64 @@ Use a lowercase GHCR image path. Change or remove `target` when the production
 stage in the `Dockerfile` has another name or is already the final stage. The
 image prefix must be identical in the workflow and `compose.prod.yaml`.
 
+## Add the manual redeploy workflow
+
+Create `.github/workflows/redeploy-production.yml` so an existing release can
+be deployed again without rebuilding its image:
+
+```yaml
+name: Redeploy production
+
+on:
+    workflow_dispatch:
+        inputs:
+            release_tag:
+                description: Existing published release tag to deploy
+                required: true
+                type: string
+
+concurrency:
+    group: production-deployment
+    cancel-in-progress: false
+
+jobs:
+    validate-release:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+        steps:
+            - name: Verify release tag
+              env:
+                  GH_TOKEN: ${{ github.token }}
+                  RELEASE_TAG: ${{ inputs.release_tag }}
+              run: gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null
+
+    deploy:
+        needs: validate-release
+        permissions:
+            contents: read
+            packages: read
+        uses: Te4g/workflows/.github/workflows/deploy-vps-compose.yml@main
+        with:
+            image-tag: ${{ inputs.release_tag }}
+            application-image-prefix: ghcr.io/te4g/my-app
+            source-ref: ${{ inputs.release_tag }}
+            deploy-path: /srv/compose/my-app
+            health-timeout-seconds: 300
+        secrets:
+            DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+            DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+            DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+            DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+            DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+            GHCR_USERNAME: ${{ github.actor }}
+            GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+
+This workflow contains no build job. It verifies that the release exists and
+passes the tag as both `image-tag` and `source-ref`, so the existing GHCR image
+and the `compose.prod.yaml` from that exact release are deployed together.
+
 ## Prepare the VPS
 
 The examples use a dedicated `deploy` account and `/srv/compose/my-app`:
@@ -288,6 +346,13 @@ The workflow builds and publishes the immutable GHCR image, uploads
 `compose.prod.yaml`, validates the resolved image tag, pulls it with temporary
 GHCR credentials, persists `IMAGE_TAG` in the VPS `.env`, starts the stack, and
 requires every service to be running and healthy.
+
+To redeploy an existing release without running the build workflow:
+
+```bash
+gh release view v1.0.0
+gh workflow run redeploy-production.yml -f release_tag=v1.0.0
+```
 
 ## Verify production
 
