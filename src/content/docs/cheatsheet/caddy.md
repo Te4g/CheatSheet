@@ -4,7 +4,11 @@ title: Caddy
 
 ## Quickly expose the current directory with Caddy using docker
 ```bash
-docker run --rm --interactive --tty --volume $(pwd):/srv --publish ${1:-8090}:80 caddy caddy file-server --browse
+docker run --rm -it \
+  --volume "$PWD:/srv:ro" \
+  --publish "0.0.0.0:${1:-8090}:80" \
+  caddy caddy file-server \
+  --root /srv --listen :80 --browse --debug --access-log
 ```
 
 ## Extract Caddyfile from docker image
